@@ -1,7 +1,9 @@
 Rails .application .routes .draw do
-    devise_for :users
+  devise_for :users
 
-    resources :discussions, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-
-    root to: 'main#index'
+  resources :discussions, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    resources :posts, only: [:create], module: :discussions
   end
+
+  root to: 'main#index'
+end
